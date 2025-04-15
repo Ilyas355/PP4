@@ -74,6 +74,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'productivity_app.wsgi.application'
 
+# ADDED
+ASGI_APPLICATION = 'productivity_app.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
