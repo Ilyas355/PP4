@@ -59,6 +59,43 @@
 
 ### Wireframes
 
+<br>
+
+chat page
+
+<br>
+
+![chat search page](docs/wireframes/chat_search_page.jpg)
+![chat general server](docs/wireframes/chat_public_server.jpg)
+![chat announcements server](docs/wireframes/chat_public_server_2.jpg)
+![chat private server](docs/wireframes/chat_private_server.jpg)
+
+<br>
+
+tasks
+
+<br>
+
+![tasks](docs/wireframes/tasks.jpg)
+
+<br>
+
+external tasks
+
+<br>
+
+![external tasks search](docs/wireframes/external_tasks_search.jpg)
+![external tasks page](docs/wireframes/external_tasks_page.jpg)
+
+<br>
+
+profile
+
+<br>
+
+![profile](docs/wireframes/profile_page.jpg)
+![profile](docs/wireframes/logged_out_page.jpg)
+
 ## Surface
 
 ## Features
