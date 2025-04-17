@@ -30,7 +30,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link text-light" href="">Chat</a>
+            <a class="nav-item nav-link text-light" href="{% url 'chat-home' %}">Chat</a>
             <a class="nav-item nav-link text-light" href="">Tasks</a>
             <a class="nav-item nav-link text-light" href="">External Tasks</a>
           </div>
@@ -51,7 +51,22 @@
   </header>
 
   <main role="main" class="container mt-5 pt-4">
-
+    <div class="row">
+      <div class="col-md-8">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm border-0" role="alert">
+          <strong>🗨 {{ message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+      {% block server %}{% endblock server %}
+    </div>
   </main>
 
     <!-- Optional JavaScript -->

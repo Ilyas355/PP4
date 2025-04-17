@@ -1,0 +1,42 @@
+{% extends "chat_and_tasks/base.html" %} 
+{% load crispy_forms_tags %} 
+
+{% block content %}
+  <div class="content-section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">
+          Enter to join a room
+        </legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">
+          Confirm
+        </button>
+      </div>
+    </form>
+  </div>
+
+{% endblock content %}
+
+{% block server %}
+  <div class="col-md-4">
+    <div class="content-section p-2 shadow rounded bg-light">
+      <h3 class="text-muted font-weight-bold">🌍 Public Servers</h3>
+      <p class="text-muted">Join a public chat room or DM the admin for more options!</p>
+      <ul class="list-group">
+        {% if rooms is None %}
+        <li class="list-group-item text-center text-muted">No public servers available</li>
+        {% else %}
+        {% for room in rooms %}
+        <li class="list-group-item">
+          <a class="text-primary font-weight-bold" href="{% url 'chat-room' room.slug %}">{{ room.name }}</a>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+{% endblock server %}
