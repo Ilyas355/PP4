@@ -1,0 +1,65 @@
+{% extends "chat/base.html" %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+<div class="content-section">
+  <h3 class="text-center">{{ room_name }}</h3>
+  <div
+    id="chat-log-container"
+    class="container bg-light p-2 rounded border overflow-auto"
+    style="height: 480px; overflow-y: auto"
+  >
+    <div id="chat-log">
+      {% if db_messages %} 
+      {% for m in db_messages %}
+      <div class="media content-section">
+        <img class="rounded-circle article-img" src="{{ m.profile_pic }}" />
+        <div class="media-body">
+          <div class="article-metadata">
+            <span class="mr-2"> {{ m.username }} </span>
+          </div>
+          <p class="article-content">{{ m.message_content }}</p>
+          {% if m.username == username %}
+          <div>
+            <form action="{% url 'delete_object' m.id %}" method="post" class="delete-form">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">
+                Delete <i class="fa fa-trash"></i>
+              </button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %} 
+      {% endif %}
+      <script>
+        let myDiv = document.getElementById("chat-log-container");
+        myDiv.scrollTop = myDiv.scrollHeight;
+      </script>
+    </div>
+  </div>
+  <br />
+  <input class="form-control" id="chat-message-input" type="text" size="100" /><br />
+  <input class="form-control" id="chat-message-submit" type="button" value="Send" />
+
+{% endblock content %}
+
+{% block server %}
+<div class="col-md-4">
+  <div class="content-section p-2 shadow rounded bg-light">
+    <h3 class="text-muted font-weight-bold">🌍 Public Servers</h3>
+    <p class="text-muted">Join a public chat room or DM the admin for more options!</p>
+    <ul class="list-group">
+      {% if rooms is None %}
+      <li class="list-group-item text-center text-muted">No public servers available</li>
+      {% else %}
+      {% for room in rooms %}
+      <li class="list-group-item">
+        <a class="text-primary font-weight-bold" href="{% url 'chat-room' room.slug %}">{{ room.name }}</a>
+      </li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock server %}
