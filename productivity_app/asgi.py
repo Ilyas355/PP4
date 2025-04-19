@@ -11,7 +11,7 @@ import os
 
 from django.core.asgi import get_asgi_application
 # ******************** 
-import chat_and _tasks.routing
+import chat.routing
 
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
