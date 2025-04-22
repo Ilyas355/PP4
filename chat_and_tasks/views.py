@@ -34,3 +34,9 @@ def chat_room(request, room_name):
         'db_messages': db_messages,
         'username': username,
     })
+
+@login_required
+def delete_object_function(request, id):
+    ob = Message.objects.filter(id=id)
+    ob.delete()
+    return redirect('/')
