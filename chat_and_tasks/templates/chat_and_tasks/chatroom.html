@@ -1,4 +1,4 @@
-{% extends "chat/base.html" %} 
+{% extends "chat_and_tasks/base.html" %} 
 {% load crispy_forms_tags %} 
 {% block content %}
 <div class="content-section">
@@ -11,7 +11,7 @@
     <div id="chat-log">
       {% if db_messages %} 
       {% for m in db_messages %}
-      <div class="media content-section">
+      <div id ="{{ m.id }}" class="media content-section">
         <img class="rounded-circle article-img" src="{{ m.profile_pic }}" />
         <div class="media-body">
           <div class="article-metadata">
@@ -19,13 +19,17 @@
           </div>
           <p class="article-content">{{ m.message_content }}</p>
           {% if m.username == username %}
-          <div>
+          <div class="d-flex justify-content align-items-center">
             <form action="{% url 'delete_object' m.id %}" method="post" class="delete-form">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger">
+              <button type="submit" class="btn btn-danger" data-id="{{ m.id }}">
                 Delete <i class="fa fa-trash"></i>
               </button>
+                 
             </form>
+            <button type='button' id="edit-message" class='btn btn-warning edit-message' data-id="{{ m.id }}">
+              edit <i class='fa fa-trash'></i>
+            </button>
           </div>
           {% endif %}
         </div>
@@ -39,8 +43,30 @@
     </div>
   </div>
   <br />
+  <br />
   <input class="form-control" id="chat-message-input" type="text" size="100" /><br />
   <input class="form-control" id="chat-message-submit" type="button" value="Send" />
+
+  <div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" id="chat-message-input-2" type="text" size="100" /><br />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="chat-message-submit-2">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 {% endblock content %}
 
