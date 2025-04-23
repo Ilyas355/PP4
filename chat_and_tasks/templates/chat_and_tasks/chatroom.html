@@ -99,6 +99,70 @@
             });
         });
     });
+    
+    const roomName = JSON.parse(document.getElementById("room-name").textContent);
+    const userName = JSON.parse(document.getElementById("user-name").textContent);
+    const profilePic = JSON.parse(document.getElementById("profile-pic").textContent);
+    let messageId = null;
+
+    const chatSocket = new WebSocket(
+      "ws://" + window.location.host + "/ws/chat/" + roomName + "/"
+    );
+
+    chatSocket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
+      if (data.message) {
+        let html = '<div class="media content-section">';
+        html += '<img class="rounded-circle article-img" src="' + data.profile_pic + '" />';
+        html += '<div class="media-body">';
+        html += '<div class="article-metadata">';
+        html += '<span class="mr-2">' + data.username + "</span>";
+        html += "</div>";
+        html += '<p class="article-content">' + data.message + "</p>";
+        html += "</div>";
+        html += "</div>";
+        document.querySelector("#chat-log").innerHTML += html;
+
+        let myDiv = document.getElementById("chat-log-container");
+        myDiv.scrollTop = myDiv.scrollHeight;
+      } else {
+        alert("Message was empty");
+      }
+    };
+
+    chatSocket.onclose = function (e) {
+      console.error("Chat socket closed unexpectedly");
+    };
+
+    function handleChatInput(inputId, submitId) {
+      const inputEl = document.querySelector(inputId);
+      const submitEl = document.querySelector(submitId);
+      inputEl.focus();
+
+      inputEl.onkeyup = function (e) {
+        if (e.keyCode === 13) {
+          submitEl.click();
+        }
+      };
+
+      submitEl.onclick = function () {
+        const message = inputEl.value;
+        chatSocket.send(
+          JSON.stringify({
+            message: message,
+            username: userName,
+            profile_pic: profilePic,
+            room: roomName,
+          })
+        );
+        inputEl.value = "";
+        location.reload();
+      };
+    }
+
+    handleChatInput("#chat-message-input", "#chat-message-submit");
+    handleChatInput("#chat-message-input-2", "#chat-message-submit-2");
+
   </script>
 
 {% endblock content %}
