@@ -67,6 +67,39 @@
     </div>
   </div>
 
+   {% block scripts %} 
+  {{ room_name|json_script:"room-name" }} 
+  {{ request.user.username|json_script:"user-name" }} 
+  {{ request.user.profile.image.url|json_script:"profile-pic" }}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".delete-form").forEach(form => {
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent page reload
+
+                let formElement = event.target;
+                let messageDiv = formElement.closest(".message"); // Get parent div
+                let url = formElement.action; // Get form action URL
+
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": formElement.querySelector("[name=csrfmiddlewaretoken]").value
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        messageDiv.remove(); // Remove the message div from the UI
+                    } else {
+                        alert("Error: " + data.error);
+                    }
+                });
+                location.reload();
+            });
+        });
+    });
+  </script>
 
 {% endblock content %}
 
