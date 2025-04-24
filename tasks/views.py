@@ -99,3 +99,27 @@ def external_tasks_home(request):
             'date_added': [task.date_added for task in tasks],
         }
         return render(request, 'chat/external_tasks.html', context)
+    
+    elif request.method == 'GET':
+        filter_option = request.GET.get("filter", "all")
+        username = request.GET.get("username")
+        user_exists = User.objects.filter(username=username).exists()
+        tasks = Task.objects.filter(name__username=username)
+
+        if not user_exists:
+            show = True
+        else:
+            show = False
+            tasks = filter_option_function(filter_option, tasks)
+
+        context = {
+            'tasks': tasks,
+            'username': username,
+            'selected_filter': filter_option,
+            'show': show,
+            'date_added': [task.date_added for task in tasks],
+        }
+        return render(request, 'chat/external_tasks.html', context)
+
+    else:
+        return render(request, 'chat/external_tasks.html')
