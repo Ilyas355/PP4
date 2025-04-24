@@ -39,3 +39,33 @@ def delete_task(request, task_id):
     task.delete()
     
     return redirect("Tasks-home")
+
+
+@login_required()
+def edit_task(request, task_id):
+    
+    username =request.POST.get("username")
+    print(f"here is the username{username}")
+        
+    user = get_object_or_404(User, username=username)
+    task = get_object_or_404(Task, id=task_id, name=user)
+    task.taskContent = request.POST.get("taskContent", task.taskContent)
+    task.complete = "complete" in request.POST
+    task.save()
+    return redirect("Tasks-home")
+
+
+@login_required
+def add_task(request):
+
+    username =request.POST.get("username")
+        
+    user = get_object_or_404(User, username=username)
+
+    if request.method == "POST":
+        task_content = request.POST.get("taskContent")
+        complete_status = request.POST.get("complete") == "on"
+        Task.objects.create(name=user, taskContent=task_content, complete=complete_status)
+        tasks = Task.objects.filter(name__username=username)
+        return render(request, 'chat/Tasks.html', {'tasks': tasks, 'username': user, 'date_added': [task.date_added for task in tasks]})
+
