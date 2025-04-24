@@ -30,7 +30,7 @@ def tasks_home(request):
     print(request.user.username)
 
 
-    return render(request, 'chat/Tasks.html', {'tasks': tasks, 'username': request.user.username, 'date_added': [task.date_added for task in tasks], 'selected_filter': filter_option})
+    return render(request, 'tasks/Tasks.html', {'tasks': tasks, 'username': request.user.username, 'date_added': [task.date_added for task in tasks], 'selected_filter': filter_option})
 
 
 @login_required()
@@ -68,7 +68,7 @@ def add_task(request):
         complete_status = request.POST.get("complete") == "on"
         Task.objects.create(name=user, taskContent=task_content, complete=complete_status)
         tasks = Task.objects.filter(name__username=username)
-        return render(request, 'chat/Tasks.html', {'tasks': tasks, 'username': user, 'date_added': [task.date_added for task in tasks]})
+        return render(request, 'tasks/Tasks.html', {'tasks': tasks, 'username': user, 'date_added': [task.date_added for task in tasks]})
 
 
 @login_required()
@@ -122,4 +122,4 @@ def external_tasks_home(request):
         return render(request, 'chat/external_tasks.html', context)
 
     else:
-        return render(request, 'chat/external_tasks.html')
+        return render(request, 'tasks/external_tasks.html')
