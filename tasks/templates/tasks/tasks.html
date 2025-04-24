@@ -39,7 +39,7 @@
             <button id="showFormBtn" class="btn btn-light fw-bold text-dark">+ Add Task</button>
         </div>
         <div class="card-body">
-
+            
             <!-- Task List -->
             <ul class="list-group list-group-flush">
                 <div class="dropdown">
@@ -90,6 +90,22 @@
                             </form>
                         </div>
                     </li>
+                    <!-- Hidden Edit Form -->
+                    <form method="POST" action="{% url 'edit_task' task.id %}" class="task-edit-form" style="display: none;">
+                        {% csrf_token %}
+                        
+                        <input type="hidden" name="username" value="{{ username }}">
+
+                        <div class="mt-2">
+                            <label class="text-light">Change Task Content:</label>
+                            <input type="text" name="taskContent" value="{{ task.taskContent }}" class="form-control">
+                        </div>
+                        <div class="form-check mt-2 ">
+                            <input type="checkbox" name="complete" id="complete-{{ task.id }}" class="form-check-input" {% if task.complete %}checked{% endif %}>
+                            <label for="complete-{{ task.id }}" class="form-check-label text-light">Mark as Completed</label>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-2 w-100">Confirm Changes</button>
+                    </form>
                 {% empty %}
                     <li class="list-group-item bg-dark text-white text-center border-0">
                         No tasks available. Add one above! 😊
