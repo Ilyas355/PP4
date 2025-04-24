@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.contrib import messages
 from django.utils.timezone import now, timedelta
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -69,3 +70,32 @@ def add_task(request):
         tasks = Task.objects.filter(name__username=username)
         return render(request, 'chat/Tasks.html', {'tasks': tasks, 'username': user, 'date_added': [task.date_added for task in tasks]})
 
+
+@login_required()
+def external_tasks_home(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have permission to view this page.')
+        return redirect('chat-home') 
+
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        user_exists = User.objects.filter(username=username).exists()
+        filter_option = request.GET.get("filter", "all")
+        tasks = Task.objects.filter(name__username=username)
+
+        if not user_exists:
+            show = True
+            messages.info(request, 'This user does not exist')
+            tasks = []
+        else:
+            show = False
+            tasks = filter_option_function(filter_option, tasks)
+
+        context = {
+            'tasks': tasks,
+            'username': username,
+            'selected_filter': filter_option,
+            'show': show,
+            'date_added': [task.date_added for task in tasks],
+        }
+        return render(request, 'chat/external_tasks.html', context)
