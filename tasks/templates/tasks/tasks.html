@@ -1,0 +1,47 @@
+{% extends "chat/base.html" %} {% load crispy_forms_tags %} 
+
+{% block styleTask %}
+<style>
+    .task-item {
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .task-item:hover {
+        transform: scale(1.05);
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .task-item.expanded {
+        transform: scale(1.1);
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .task-edit-form {
+        margin-top: 10px;
+    }
+
+    .task-item.expanded .task-edit-form {
+        display: block;
+    }
+        
+</style>
+{% endblock styleTask %}
+
+{% block content %}
+
+<div class="container mt-1 pt-3 mb-4">
+    <div class="card shadow-lg bg-dark text-light border-0">
+        <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
+            <h4 class="fw-bold m-0 text-white">📝 Tasks</h4>
+            <button id="showFormBtn" class="btn btn-light fw-bold text-dark">+ Add Task</button>
+        </div>
+
+        
+    </div>
+</div>
+
+
+{% endblock content %}
