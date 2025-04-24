@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ChatAndTasksConfig(AppConfig):
+class ChatConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'chat_and_tasks'
+    name = 'chat'

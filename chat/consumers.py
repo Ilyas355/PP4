@@ -32,9 +32,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.room_group_name,
                 self.channel_name
             )
+            print(f"[WebSocket] Connecting to room: {self.scope['url_route']['kwargs']['room_name']}")
             await self.accept()
 
         else:
+            print('it hasnt connected')
             await self.send({"close": True})
 
     async def disconnect(self, close_code):

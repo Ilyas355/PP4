@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Task
 from .forms import RoomForm
 from .models import Message, Room
 from django.contrib import messages
@@ -19,9 +18,9 @@ def chat_home(request):
         db_messages = Message.objects.filter(room=room_name)[:]
         username = request.user.username
         messages.success(request, f"Joined: {room_name}")
-        return render(request, 'chat_and_tasks/chatroom.html', {'room_name': room_name, 'title': room_name, 'db_messages': db_messages, 'username': username})
+        return render(request, 'chat/chatroom.html', {'room_name': room_name, 'title': room_name, 'db_messages': db_messages, 'username': username})
 
-    return render(request, 'chat_and_tasks/index.html', {'form': form})
+    return render(request, 'chat/index.html', {'form': form})
 
 @login_required
 def chat_room(request, room_name):

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-h!-!dx5to$mg*wp3rx7sbc6d$+t6t6p%5oahu6gq$sg2(1-9i)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'channels',
     'crispy_forms',
     'crispy_bootstrap4',
-    'chat_and_tasks.apps.ChatAndTasksConfig',
+    'chat.apps.ChatConfig',
+    'tasks.apps.TasksConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'chat.context_processors.public_rooms',
             ],
         },
     },

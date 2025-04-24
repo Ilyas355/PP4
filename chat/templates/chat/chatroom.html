@@ -1,4 +1,4 @@
-{% extends "chat_and_tasks/base.html" %} 
+{% extends "chat/base.html" %} 
 {% load crispy_forms_tags %} 
 {% block content %}
 <div class="content-section">
@@ -43,7 +43,6 @@
     </div>
   </div>
   <br />
-  <br />
   <input class="form-control" id="chat-message-input" type="text" size="100" /><br />
   <input class="form-control" id="chat-message-submit" type="button" value="Send" />
 
@@ -67,7 +66,7 @@
     </div>
   </div>
 
-   {% block scripts %} 
+  {% block scripts %} 
   {{ room_name|json_script:"room-name" }} 
   {{ request.user.username|json_script:"user-name" }} 
   {{ request.user.profile.image.url|json_script:"profile-pic" }}
@@ -99,7 +98,7 @@
             });
         });
     });
-    
+
     function submitDeleteForm(messageId) {
       console.log("Message deleted: " + messageId);
       event.preventDefault();
@@ -119,7 +118,7 @@
       form.submit();
       document.getElementById(messageId).remove()
     }
-    
+
     const roomName = JSON.parse(document.getElementById("room-name").textContent);
     const userName = JSON.parse(document.getElementById("user-name").textContent);
     const profilePic = JSON.parse(document.getElementById("profile-pic").textContent);
@@ -128,7 +127,7 @@
     const chatSocket = new WebSocket(
       "ws://" + window.location.host + "/ws/chat/" + roomName + "/"
     );
-
+    
     chatSocket.onmessage = function (e) {
       const data = JSON.parse(e.data);
       if (data.message) {
@@ -183,22 +182,23 @@
     handleChatInput("#chat-message-input", "#chat-message-submit");
     handleChatInput("#chat-message-input-2", "#chat-message-submit-2");
 
-    document.querySelectorAll(".edit-message").forEach(button => {
-        button.addEventListener("click", function(event) {
-        event.preventDefault(); 
-        $('#myModal').modal('show');
-        if (this.id === "edit-message") {
-            messageId = this.dataset.id;
-            console.log(document.getElementById(messageId));
-        } 
-        });
+  document.querySelectorAll(".edit-message").forEach(button => {
+    button.addEventListener("click", function(event) {
+      event.preventDefault(); 
+      $('#myModal').modal('show');
+      if (this.id === "edit-message") {
+        messageId = this.dataset.id;
+        console.log(document.getElementById(messageId));
+      } 
     });
+  });
 
-    document.getElementById("chat-message-submit-2").addEventListener("click", function() {
-        submitDeleteForm(messageId);
-    });
+  document.getElementById("chat-message-submit-2").addEventListener("click", function() {
+    submitDeleteForm(messageId);
+  });
   </script>
-
+  {% endblock scripts %}
+</div>
 {% endblock content %}
 
 {% block server %}
