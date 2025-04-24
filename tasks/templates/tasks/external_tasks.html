@@ -1,0 +1,153 @@
+{% extends "chat/base.html" %} {% load crispy_forms_tags %} {% block content %}
+{% if show == True %}
+
+  <div class="content-section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">
+          Search for a user to view their tasks
+        </legend>
+        <input type="text" name="username" class="textinput form-control" required id="id_search_username" >
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">
+          Confirm
+        </button>
+      </div>
+    </form>
+  </div>
+{% endif %}
+
+{% if show == False %}
+<div class="container mt-1 pt-3 mb-4">
+    <div class="card shadow-lg bg-dark text-light border-0">
+        <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
+            <h4 class="fw-bold m-0 text-white">📝 Tasks</h4>
+            <button id="showFormBtn" class="btn btn-light fw-bold text-dark">+ Add Task</button>
+        </div>
+
+        <div class="card-body">
+            <!-- Task Input Card (Initially Hidden) -->
+            <div id="taskForm" class="card p-3 mb-3 bg-secondary text-light border-0 d-none">
+                <h5 class="fw-bold">Add a New Task</h5>
+                <form method="POST" action="{% url 'add_task' %}">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="username" value="{{ username }}">
+
+                    <div class="mb-2">
+                        <input type="text" class="form-control bg-dark text-light border-0" 
+                               name="taskContent" placeholder="Enter task..." required>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="completeCheckbox" name="complete">
+                        <label class="form-check-label" for="completeCheckbox">Mark as Complete</label>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 fw-bold">Add Task</button>
+                </form>
+            </div>
+
+            <!-- Task List -->
+            <ul class="list-group list-group-flush">
+                <div class="dropdown">
+                    <button class="btn btn-light fw-bold text-dark dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="filterDropdown">
+                        <a class="dropdown-item" href="?filter=week&username={{ username }}">Tasks from last 7 days</a>
+                        <a class="dropdown-item" href="? &username={{ username }}">Tasks from last 30 days</a>
+                        <a class="dropdown-item" href="?filter=completed&username={{ username }}">Completed tasks ✅</a>
+                        <a class="dropdown-item" href="?filter=incomplete&username={{ username }}">Incomplete tasks ⏳</a>
+                        <a class="dropdown-item" href="?filter=all&username={{ username }}">All tasks 📋</a>
+                    </div>
+
+                    <p class="text-white mt-2">
+                        <strong>Showing:</strong> 
+                        {% if selected_filter == "week" %}
+                            Tasks from the last 7 days
+                        {% elif selected_filter == "month" %}
+                            Tasks from the last 30 days
+                        {% elif selected_filter == "completed" %}
+                            Completed tasks ✅
+                        {% elif selected_filter == "incomplete" %}
+                            Incomplete tasks ⏳
+                        {% else %}
+                            All tasks 📋
+                        {% endif %}
+                    </p>
+                </div>
+                                
+                {% for task in tasks %}
+                    <li class="list-group-item bg-dark text-white border-0 shadow-sm task-item" onclick="toggleEditForm(this)">
+                        <div class="d-flex justify-content-between align-items-between">
+                            <div>
+                                <h6 class="mb-1 fw-bold text-info">@{{ task.name.username }}</h6> <!-- Display username -->
+                                <p class="mb-0"><strong>Task:</strong> {{ task.taskContent }}</p> <!-- Display task content -->
+                                <p class="mb-0 text-muted" style="font-size: 12px;">📅 Added on: {{ task.date_added }}</p>
+                            </div>
+                            <div>
+                                {% if task.complete %}
+                                    <span class="badge bg-success">✔ Completed</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">⌛ Pending</span>
+                                {% endif %}
+                            </div>
+                            <form method="POST" action="{% url 'delete_task' task.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm px-2 py-1">Delete❌</button>
+                            </form>
+                        </div>
+                    </li>
+                    <!-- Hidden Edit Form -->
+                    <form method="POST" action="{% url 'edit_task' task.id%}" class="task-edit-form" style="display: none;">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="username" value="{{ username }}">
+
+                        <div class="mt-2">
+                            <label class="text-light">Change Task Content:</label>
+                            <input type="text" name="taskContent" value="{{ task.taskContent }}" class="form-control">
+                        </div>
+                        <div class="form-check mt-2 ">
+                            <input type="checkbox" name="complete" id="complete-{{ task.id }}" class="form-check-input" {% if task.complete %}checked{% endif %}>
+                            <label for="complete-{{ task.id }}" class="form-check-label text-light">Mark as Completed</label>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-2 w-100">Confirm Changes</button>
+                    </form>
+                {% empty %}
+                    <li class="list-group-item bg-dark text-white text-center border-0">
+                        No tasks available. Add one above! 😊
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% block scripts %}
+<script>
+    function toggleEditForm(taskElement) {
+        // Close any other open task forms
+        document.querySelectorAll('.task-item').forEach(item => {
+            if (item !== taskElement) {
+                item.classList.remove('expanded');
+
+            }
+        });
+
+        // Toggle the clicked task
+        taskElement.classList.toggle('expanded');
+        taskElement.nextElementSibling.style.display = taskElement.nextElementSibling.style.display === "none" || taskElement.nextElementSibling.style.display === "" ? "block" : "none";
+    }
+    document.getElementById('showFormBtn').addEventListener('click', function() {
+            let form = document.getElementById('taskForm');
+            form.classList.toggle('d-none');
+            });
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+{% endblock scripts %}
+{% endblock content %}
