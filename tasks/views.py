@@ -98,7 +98,7 @@ def external_tasks_home(request):
             'show': show,
             'date_added': [task.date_added for task in tasks],
         }
-        return render(request, 'chat/external_tasks.html', context)
+        return render(request, 'tasks/external_tasks.html', context)
     
     elif request.method == 'GET':
         filter_option = request.GET.get("filter", "all")
@@ -119,7 +119,7 @@ def external_tasks_home(request):
             'show': show,
             'date_added': [task.date_added for task in tasks],
         }
-        return render(request, 'chat/external_tasks.html', context)
+        return render(request, 'tasks/external_tasks.html', context)
 
     else:
         return render(request, 'tasks/external_tasks.html')
