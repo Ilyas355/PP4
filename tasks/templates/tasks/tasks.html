@@ -38,7 +38,65 @@
             <h4 class="fw-bold m-0 text-white">📝 Tasks</h4>
             <button id="showFormBtn" class="btn btn-light fw-bold text-dark">+ Add Task</button>
         </div>
+        <div class="card-body">
 
+            <!-- Task List -->
+            <ul class="list-group list-group-flush">
+                <div class="dropdown">
+                    <button class="btn btn-light fw-bold text-dark dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="filterDropdown">
+                        <a class="dropdown-item" href="?filter=week">Tasks from last 7 days</a>
+                        <a class="dropdown-item" href="?filter=month">Tasks from last 30 days</a>
+                        <a class="dropdown-item" href="?filter=completed">Completed tasks ✅</a>
+                        <a class="dropdown-item" href="?filter=incomplete">Incomplete tasks ⏳</a>
+                        <a class="dropdown-item" href="?filter=all">All tasks 📋</a>
+                    </div>
+                    <p class="text-white mt-2">
+                        <strong>Showing:</strong> 
+                        {% if selected_filter == "week" %}
+                            Tasks from the last 7 days
+                        {% elif selected_filter == "month" %}
+                            Tasks from the last 30 days
+                        {% elif selected_filter == "completed" %}
+                            Completed tasks ✅
+                        {% elif selected_filter == "incomplete" %}
+                            Incomplete tasks ⏳
+                        {% else %}
+                            All tasks 📋
+                        {% endif %}
+                    </p>
+                </div>
+                                
+                {% for task in tasks %}
+                    <li class="list-group-item bg-dark text-white border-0 shadow-sm task-item" onclick="toggleEditForm(this)">
+                        <div class="d-flex justify-content-between align-items-between">
+                            <div>
+                                <h6 class="mb-1 fw-bold text-info">@{{ task.name.username }}</h6> <!-- Display username -->
+                                <p class="mb-0"><strong>Task:</strong> {{ task.taskContent }}</p> <!-- Display task content -->
+                                <p class="mb-0 text-muted" style="font-size: 12px;">📅 Added on: {{ task.date_added }}</p>
+                            </div>
+                            <div>
+                                {% if task.complete %}
+                                    <span class="badge bg-success">✔ Completed</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">⌛ Pending</span>
+                                {% endif %}
+                            </div>
+                            <form method="POST" action="{% url 'delete_task' task.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm px-2 py-1">Delete❌</button>
+                            </form>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item bg-dark text-white text-center border-0">
+                        No tasks available. Add one above! 😊
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
         
     </div>
 </div>
