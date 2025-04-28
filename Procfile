@@ -1,0 +1,1 @@
+web: daphne -b 0.0.0.0 -p $PORT productivity_app.asgi:application
