@@ -85,7 +85,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
+            "hosts": [os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')],
         },
     },
 }
@@ -95,7 +95,7 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('postgresql://neondb_owner:npg_oKR3lnP1YpmB@ep-winter-waterfall-a2ck33yk.eu-central-1.aws.neon.tech/push_cleft_brick_969651', 'postgres://localhost:5432/yourlocaldb')  # Fallback for local development
+        default=os.environ.get('DATABASE_URL', 'postgres://localhost:5432/yourlocaldb')  # Fallback for local development
     )
 }
 
