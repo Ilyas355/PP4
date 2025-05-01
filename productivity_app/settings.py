@@ -40,7 +40,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'cloudinary_storage',
     'channels',
     'crispy_forms',
     'crispy_bootstrap4',
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
