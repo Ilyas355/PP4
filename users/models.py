@@ -9,7 +9,7 @@ import requests
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(
-        default="default_u4dioc.jpg",
+        default="../default_u4dioc.jpg",
         upload_to='profile_pics'
     )
 
