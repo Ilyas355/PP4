@@ -104,3 +104,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 message_content=message, username=username, profile_pic=profile_pic, room=room)
         except Exception as e:
             print(f"Error saving message: {e}")
+            print(f"Message: {message} Message length: {len(message)}, profile_pic: {profile_pic}")
+            print(f"Username: {username}, , Room: {room}")
