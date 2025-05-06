@@ -124,9 +124,8 @@
     const profilePic = JSON.parse(document.getElementById("profile-pic").textContent);
     let messageId = null;
 
-    const chatSocket = new WebSocket(
-      "ws://" + window.location.host + "/ws/chat/" + roomName + "/"
-    );
+    const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+    const ChatSocket = new WebSocket(protocol + window.location.host + '/ws/chat/Channel2/');
     
     chatSocket.onmessage = function (e) {
       const data = JSON.parse(e.data);
