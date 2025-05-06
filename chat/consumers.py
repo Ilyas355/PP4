@@ -99,5 +99,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @sync_to_async
     def save_message(self, message, username, profile_pic, room):
-        Message.objects.create(
-            message_content=message, username=username, profile_pic=profile_pic, room=room)
+        try:
+            Message.objects.create(
+                message_content=message, username=username, profile_pic=profile_pic, room=room)
+        except Exception as e:
+            print(f"Error saving message: {e}")

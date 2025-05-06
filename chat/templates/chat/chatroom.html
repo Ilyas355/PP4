@@ -74,7 +74,6 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".delete-form").forEach(form => {
             form.addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent page reload
 
                 let formElement = event.target;
                 let messageDiv = formElement.closest(".message"); // Get parent div
@@ -90,11 +89,11 @@
                 .then(data => {
                     if (data.success) {
                         messageDiv.remove(); // Remove the message div from the UI
+                        location.reload();
                     } else {
                         alert("Error: " + data.error);
                     }
                 });
-                location.reload();
             });
         });
     });
