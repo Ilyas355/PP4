@@ -18,7 +18,7 @@ def chat_home(request):
         db_messages = Message.objects.filter(room=room_name)[:]
         username = request.user.username
         messages.success(request, f"Joined: {room_name}")
-        return render(request, 'chat/chatroom.html', {'room_name': room_name, 'title': room_name, 'db_messages': db_messages, 'username': username})
+        return render(request, 'chat/chatroom.html', {'room_name': room_name, 'db_messages': db_messages, 'username': username})
 
     return render(request, 'chat/index.html', {'form': form})
 

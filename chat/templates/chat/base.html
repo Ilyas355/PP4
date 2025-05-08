@@ -12,11 +12,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 
-    {% if title %}
-        <title>Django Chat App - {{ title }}</title>
-    {% else %}
-        <title>Django Chat App</title>
-    {% endif %}
+    <title>Productivity App</title>
 
 
 </head>
@@ -24,7 +20,7 @@
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand font-weight-bold" href="{% url 'chat-home' %}">Django Chat</a>
+        <a class="navbar-brand font-weight-bold" href="{% url 'chat-home' %}">Productivity App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
