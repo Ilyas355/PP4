@@ -103,7 +103,7 @@
       event.preventDefault();
       const form = document.createElement("form");
       form.method = "POST";
-      form.action = `/chatroom/${messageId}`;  // matches your Django URL
+      form.action = `/chatroom/${messageId}`;
 
       const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
       const csrfInput = document.createElement("input");
@@ -115,7 +115,7 @@
       form.style.display = "none";
       document.body.appendChild(form);
       form.submit();
-      document.getElementById(messageId).remove()
+      document.getElementById(messageId).remove();
     }
 
     const roomName = JSON.parse(document.getElementById("room-name").textContent);
