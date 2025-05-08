@@ -11,7 +11,6 @@ from django.contrib import messages
 
 @login_required()
 def chat_home(request):
-    messages.info(request, 'Refresh the page to see new messages.')
     form = RoomForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         room_name = form.cleaned_data['room_name']

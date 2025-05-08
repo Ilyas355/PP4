@@ -141,10 +141,13 @@
         taskElement.classList.toggle('expanded');
         taskElement.nextElementSibling.style.display = taskElement.nextElementSibling.style.display === "none" || taskElement.nextElementSibling.style.display === "" ? "block" : "none";
     }
-    document.getElementById('showFormBtn').addEventListener('click', function() {
-            let form = document.getElementById('taskForm');
-            form.classList.toggle('d-none');
-            });
+    if (document.getElementById('showFormBtn')!== null) {
+        document.getElementById('showFormBtn').addEventListener('click', function() {
+                let form = document.getElementById('taskForm');
+                form.classList.toggle('d-none');
+        });
+    }
+
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
