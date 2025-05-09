@@ -20,7 +20,6 @@ Live link to the deployed app on heroku - [Productivity App](https://productivit
 
 - [Existing Features](#existing-features)
 - [CRUD (Create, Read, Update, Delete)](#crud-create-read-update-delete)
-- [Other Features](#other-features)
 - [Future Features](#future-features)
 
 ### Technology
@@ -210,13 +209,183 @@ The Segoe UI font was used throughout the website.
 
 ## Features
 
-### Existing Features
+### __Existing Features__
+
+### Login Page
+- This page is where users with existing accounts log in to the app
+
+<br>
+
+![Login Page](docs/readme_images/login-page.png)
+
+<br>
+
+### Logout Page
+- This page lets users know they've been logged out and gives them the option to log back in.
+
+<br>
+
+![logout Page](docs/readme_images/logged-out-page.png)
+
+<br>
+
+### Sign Up Page
+- This page is where users have the option to create new accounts.
+
+<br>
+
+![Sign Up Page](docs/readme_images/sign-up-page.png)
+
+<br>
+
+### Chat Room Search Page
+- Here users can either select one of the public rooms available or enter a private room of their choice to communicate through. 
+
+<br>
+
+![Chat Home Page](docs/readme_images/chat-home.png)
+
+<br>
+
+### Chat Room Page
+- Here users can communicate with one another by sending messages through the different rooms.
+- Users are able edit and delete their own messages but not the messages of others.
+
+<br>
+
+![Chat Room Page](docs/readme_images/chat-room.png)
+
+<br>
+
+### Tasks Page
+- The tasks page is where users are able to manage their own tasks by:
+  - view their tasks
+  - filter their tasks
+  - adding new tasks
+  - deleting tasks
+  - editing the content of tasks
+  - editing the status of tasks
+
+<br>
+
+![Tasks Page](docs/readme_images/tasks-tab.jpg)
+
+<br>
+
+### User Search Page
+- Here site admins can search for users and proceed to manage their tasks.
+
+<br>
+
+![External Tasks Search Page](docs/readme_images/external-tasks-search.png)
+
+<br>
+
+### External Tasks Page
+- Here site admins can manage the tasks of other users.
+
+<br>
+
+![External Tasks Page](docs/readme_images/external-tasks-user.png)
+
+<br>
+
+### Profile Page
+- Here users are able to update their account details as shown in the image.
+
+<br>
+
+![Profile Page](docs/readme_images/profile-page.png)
+
+<br>
 
 ### CRUD (Create, Read, Update, Delete)
 
-### Other Features
+#### __Site User__
 
-### Future Features
+#### Create:
+
+- Can create an account by registering.
+
+- Can create and update their profile (upload image, set info).
+
+- Can send messages in public and private channels.
+
+- Can create tasks for themselves.
+
+- Can comment on tasks.
+
+- Can bookmark or like chat messages.
+
+#### Read:
+
+- Can view public and private chat history through the channel groups.
+
+- Can read all of their tasks and associated details (description, status).
+
+- Can view their own profile and those of users they interact with.
+
+#### Update:
+
+- Can edit their profile.
+
+- Can edit their own messages.
+
+- Can update their own tasks (description, status).
+
+- Can filter/sort their tasks for better organization.
+
+- Can mark tasks as complete.
+
+- Can mark tasks incomplete
+
+#### Delete:
+
+- Can delete their own messages.
+
+- Can delete their own tasks.
+
+<br>
+
+#### __Site Admin__
+
+#### Create:
+
+- Can create public/private channels.
+
+- Can create tasks for any user.
+
+#### Read:
+
+- Can read all chat messages and all tasks, regardless of user.
+
+#### Update:
+
+- Can update public channels, tasks for any user, and user accounts.
+
+#### Delete:
+
+- Can delete any task.
+
+- Can delete user accounts if needed.
+
+- Can delete public channels if inappropriate or outdated.
+
+<br>
+
+### __Future Features__
+
+#### Features to implement in the future would include:
+
+- reacting to messages
+
+- commenting on messages
+
+- site admins being able to assign tasks to multiple users
+
+- adding deadlines to tasks
+
+
 
 ## Technology
 
