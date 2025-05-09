@@ -51,6 +51,40 @@
 
 ### User Stories
 
+Site User
+Account Register: I can sign up or log in to an account so that I can access all chat and task management features.
+
+Edit Profile: I can edit my personal profile to have my own user image and decide what information is displayed.
+
+Send Message (Public Channel): I can send a message in a public channel so that I can participate in group discussions.
+
+Send Message (Private Channel): I can send a direct message to another user or a group so that I can have private conversations.
+
+View Chat History: I can view past messages in a public or private channel so that I can keep track of previous conversations.
+
+Edit Message: I can edit my own messages so that I can correct mistakes or update information.
+
+Delete Message: I can delete my own messages so that I can remove unwanted or incorrect messages.
+
+Manage Tasks: I can create, read, update, and delete my own tasks so that I can keep track of my work.
+
+View Task Details: I can view the details of my tasks so that I can understand deadlines, descriptions, and progress.
+
+Complete Task: I can mark a task as complete so that I can track progress and know what has been finished.
+
+Filter and Sort Tasks: I can filter and sort my tasks by priority, deadline, or status so that I can focus on important tasks.
+
+Superuser (Admin)
+Manage Public Channels: I can create, edit, and delete public channels so that I can structure discussions properly.
+
+Delete Message: I can delete any message in public and private chats so that I can ensure a respectful and safe environment.
+
+Manage Tasks (All Users): I can create, update, and delete tasks for any user so that I can oversee task management.
+
+View All Tasks: I can view all tasks assigned to users so that I can monitor work progress.
+
+Manage User Accounts: I can suspend, delete, or modify user accounts so that I can maintain control over the platform.
+
 ## Scope
 
 ## Structure
