@@ -1,5 +1,10 @@
 # Productivity App
 
+This website was created for my 4th Portfolio Project with Code Institute. Productivity App is multifacited app with mutliple features including a chat app and a task management system for both site users and site admins (called external users). The purpose behind this app is to provide users in companies or even education centers a platform to manage daily tasks and effectively communicate with each other seemlessly.
+<br>
+Live link to the deployed app on heroku - [Productivity App](https://productivity-app-pp4-6c2bd8f4331e.herokuapp.com)
+<br>
+
 ## Table of Contents
 
 - [User Experience Design](#user-experience-design)
@@ -49,45 +54,78 @@
 
 ## Strategy
 
+### __Typical Users__
+  
+  - A typical Site User would be an employee in a companee or student in a school who needs to have the daily tasks supervised and managed.
+
+  - The Site Admin would be a manager in a company or a teacher in a school that supervises the tasks or regular users.
+
+
 ### User Stories
 
-Site User
-Account Register: I can sign up or log in to an account so that I can access all chat and task management features.
+#### Site User
 
-Edit Profile: I can edit my personal profile to have my own user image and decide what information is displayed.
+<br>
 
-Send Message (Public Channel): I can send a message in a public channel so that I can participate in group discussions.
+  - Account Register: I can sign up or log in to an account so that I can access all chat and task management features.
 
-Send Message (Private Channel): I can send a direct message to another user or a group so that I can have private conversations.
+  - Edit Profile: I can edit my personal profile to have my own user image and decide what information is displayed.
 
-View Chat History: I can view past messages in a public or private channel so that I can keep track of previous conversations.
+  - Send Message (Public Channel): I can send a message in a public channel so that I can participate in group discussions.
 
-Edit Message: I can edit my own messages so that I can correct mistakes or update information.
+  - Send Message (Private Channel): I can send a direct message to another user or a group so that I can have private conversations.
 
-Delete Message: I can delete my own messages so that I can remove unwanted or incorrect messages.
+  - View Chat History: I can view past messages in a public or private channel so that I can keep track of previous conversations.
 
-Manage Tasks: I can create, read, update, and delete my own tasks so that I can keep track of my work.
+  - Edit Message: I can edit my own messages so that I can correct mistakes or update information.
 
-View Task Details: I can view the details of my tasks so that I can understand deadlines, descriptions, and progress.
+  - Delete Message: I can delete my own messages so that I can remove unwanted or incorrect messages.
 
-Complete Task: I can mark a task as complete so that I can track progress and know what has been finished.
+  - Manage Tasks: I can create, read, update, and delete my own tasks so that I can keep track of my work.
 
-Filter and Sort Tasks: I can filter and sort my tasks by priority, deadline, or status so that I can focus on important tasks.
+  - View Task Details: I can view the details of my tasks so that I can understand deadlines, descriptions, and progress.
 
-Superuser (Admin)
-Manage Public Channels: I can create, edit, and delete public channels so that I can structure discussions properly.
+  - Complete Task: I can mark a task as complete so that I can track progress and know what has been finished.
 
-Delete Message: I can delete any message in public and private chats so that I can ensure a respectful and safe environment.
+  - Filter and Sort Tasks: I can filter and sort my tasks by priority, deadline, or status so that I can focus on important tasks.
 
-Manage Tasks (All Users): I can create, update, and delete tasks for any user so that I can oversee task management.
+<br>
 
-View All Tasks: I can view all tasks assigned to users so that I can monitor work progress.
+#### Superuser (Admin)
 
-Manage User Accounts: I can suspend, delete, or modify user accounts so that I can maintain control over the platform.
+<br>
+
+  - Manage Public Channels: I can create, edit, and delete public channels so that I can structure discussions properly.
+
+  - Delete Message: I can delete any message in public and private chats so that I can ensure a respectful and safe environment.
+
+  - Manage Tasks (All Users): I can create, update, and delete tasks for any user so that I can oversee task management.
+
+  - View All Tasks: I can view all tasks assigned to users so that I can monitor work progress.
+
+  - Manage User Accounts: I can suspend, delete, or modify user accounts so that I can maintain control over the platform.
+
+<br>
 
 ## Scope
 
+<br>
+
+An MVP (Minimum Viable Product) approach was taken to the development of this site. The main features deemed as basic requirements for this site were:
+
+- Account Registration
+- CRUD Functionality (Both for Site User and Site Admin)
+- Device Responsiveness
+
+ For a more detailed explanation of all existing features see [Existing Features](#existing-features). [Future Features](#future-features) were still within the possible scope of this project, they were not necessary at this point in time for the site to still work.
+
 ## Structure
+
+### Site Navigation Flowchart
+
+  The Flow chart was made to see the structure of navigation on the page. The flowchart was created with [Lucid](https://lucid.app/documents#/dashboard).
+
+  ![Flowchart](docs/readme_images/site-navigation.png)
 
 ## Skeleton
 
@@ -95,42 +133,80 @@ Manage User Accounts: I can suspend, delete, or modify user accounts so that I c
 
 <br>
 
-#### chat page wireframes
+<details>
+  <summary>Chat page wireframes</summary>
+
+  ![chat search page](docs/wireframes/chat_search_page.jpg)
+  <br>
+
+  ![chat general server](docs/wireframes/chat_public_server.jpg)
+  <br>
+
+  ![chat announcements server](docs/wireframes/chat_public_server_2.jpg)
+  <br>
+  
+  ![chat private server](docs/wireframes/chat_private_server.jpg)
+
+</details>
+<br>
+<br>
+  
+
+<details>
+  <summary>Tasks wireframes</summary>
+
+  ![tasks](docs/wireframes/tasks.jpg)
+
+  </details>
+<br>
+<br>
+
+<details>
+  <summary>External tasks wireframes</summary>
+
+  ![external tasks search](docs/wireframes/external_tasks_search.jpg)
+  <br>
+
+  ![external tasks page](docs/wireframes/external_tasks_page.jpg)
+
+</details>
+<br>
 
 <br>
 
-![chat search page](docs/wireframes/chat_search_page.jpg)
-![chat general server](docs/wireframes/chat_public_server.jpg)
-![chat announcements server](docs/wireframes/chat_public_server_2.jpg)
-![chat private server](docs/wireframes/chat_private_server.jpg)
+<details>
+  <summary>Profile wireframes</summary>
+
+  ![profile](docs/wireframes/profile_page.jpg)
+  <br>
+
+  ![profile](docs/wireframes/logged_out_page.jpg)
+  <br>
+
+</details>
+<br>
+
+### Database design
+
+
+- Below is a relational diagram for the design of the database in this project.
 
 <br>
 
-#### tasks wireframes
+![database design](docs/readme_images/database-screenshot.png)
 
-<br>
-
-![tasks](docs/wireframes/tasks.jpg)
-
-<br>
-
-#### external tasks wireframes
-
-<br>
-
-![external tasks search](docs/wireframes/external_tasks_search.jpg)
-![external tasks page](docs/wireframes/external_tasks_page.jpg)
-
-<br>
-
-#### profile wireframes
-
-<br>
-
-![profile](docs/wireframes/profile_page.jpg)
-![profile](docs/wireframes/logged_out_page.jpg)
 
 ## Surface
+
+### Design
+
+### Colour-Scheme
+
+The main color schemes for the website are Dark Gray ( #2d2f31, Top Navbar Background) and White (#ffffff, Main Background). Light Blue, Green and Red for links, notifications and buttons and Dark Gray/Black for Text.
+
+### Typography
+
+The Segoe UI font was used throughout the website.
 
 ## Features
 
