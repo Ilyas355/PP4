@@ -11,6 +11,12 @@ from channels.layers import get_channel_layer
 from productivity_app.asgi import application  # Adjust if your project name is different
 import json
 import asyncio
+from django.test import TransactionTestCase  # Use this instead of TestCase
+from asgiref.sync import async_to_sync
+from channels.routing import URLRouter
+from chat.routing import websocket_urlpatterns
+
+test_application = URLRouter(websocket_urlpatterns)
 
 class ChatViewsTests(TestCase):
     def setUp(self):
@@ -57,7 +63,7 @@ class ChatConsumerTests(TestCase):
         )
 
         communicator = WebsocketCommunicator(
-            application,
+            test_application,
             f"/ws/chat/{room.slug}/"
         )
         communicator.scope['user'] = user
@@ -77,7 +83,7 @@ class ChatConsumerTests(TestCase):
         )
 
         communicator = WebsocketCommunicator(
-            application,
+            test_application,
             f"/ws/chat/{room.slug}/"
         )
         communicator.scope['user'] = user

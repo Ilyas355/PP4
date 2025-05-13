@@ -64,8 +64,6 @@ Live link to the deployed app on heroku - [Productivity App](https://productivit
 
 #### Site User
 
-<br>
-
   - Account Register: I can sign up or log in to an account so that I can access all chat and task management features.
 
   - Edit Profile: I can edit my personal profile to have my own user image and decide what information is displayed.
@@ -91,8 +89,6 @@ Live link to the deployed app on heroku - [Productivity App](https://productivit
 <br>
 
 #### Superuser (Admin)
-
-<br>
 
   - Manage Public Channels: I can create, edit, and delete public channels so that I can structure discussions properly.
 
@@ -197,15 +193,22 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 
 ## Surface
 
-### Design
+- ## Colour-Scheme
 
-### Colour-Scheme
+  - The main color schemes for the website are Dark Gray ( #2d2f31, Top Navbar Background) and White (#ffffff, Main Background). Light Blue, Green and Red for links, notifications and buttons and Dark Gray/Black for Text.
 
-The main color schemes for the website are Dark Gray ( #2d2f31, Top Navbar Background) and White (#ffffff, Main Background). Light Blue, Green and Red for links, notifications and buttons and Dark Gray/Black for Text.
+- ## Typography
 
-### Typography
+  - The Segoe UI font was used throughout the website.
 
-The Segoe UI font was used throughout the website.
+
+- ## Agile Methodology
+
+    An Agile approach was taken for the management of this project.
+
+    - User stories were written for each of the site's features.
+
+    - The user stories were then managed in a Kanban board, which was created in GitHub Projects.
 
 ## Features
 
@@ -389,13 +392,45 @@ The Segoe UI font was used throughout the website.
 
 ## Technology
 
-### Languages Used
+- ### Languages Used
+
+     - HTML
+     - CSS
+     - JavaScript
+     - Python
+     - Django
+     - Unitest (Django’s unit tests)
 
 ### Libraries and Programs Used
+
+
+   - ## Libraries and Programs Used
+
+     - Git - Was used for version control, the Gitpod terminal to commit and push to GitHub.
+
+     - [GitHub](https://github.com/) - Was used to store the project code and display the project in GitHub Pages.
+
+     - [Balsamiq](https://www.Balsamiq.com/) - Was used to create the wireframes.
+
+     - [Lucid](https://lucid.app/) - Was used to create the flowcharts.
+
+     - Google Dev Tools- Were used to test and troubleshoot the webpage as well as fix problems with responsive design and styling.
+
+     - [Favicon](https://favicon.io/) - Was used to take the logo and make it into a favicon.
+
+     - [Heroku](heroku.com) - Where used for Deployment.
+
+     - [Bootstrap](https://getbootstrap.com/) - Where used for CSS and some HTML.
+
+     - [PostgreSQL](https://www.postgresql.org/) - Was used for PostgreSQL database hosting.
+
+     - [Cloudinary](https://console.cloudinary.com/) - Where used to save static media files.
 
 ## Testing
 
 ### Automated Testing
+
+The automated testing was completed using Django’s unit tests Python standard library module Unittest for the Django files: "models.py", "urls.py", and "views.py" in my chat app and tasks app.
 
 ### Manual Test Cases
 
