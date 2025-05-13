@@ -316,10 +316,6 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 
 - Can create tasks for themselves.
 
-- Can comment on tasks.
-
-- Can bookmark or like chat messages.
-
 #### Read:
 
 - Can view public and private chat history through the channel groups.
