@@ -98,8 +98,6 @@ Live link to the deployed app on heroku - [Productivity App](https://productivit
 
   - View All Tasks: I can view all tasks assigned to users so that I can monitor work progress.
 
-  - Manage User Accounts: I can suspend, delete, or modify user accounts so that I can maintain control over the platform.
-
 <br>
 
 ## Scope
@@ -302,6 +300,8 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 
 <br>
 
+---
+
 ### CRUD (Create, Read, Update, Delete)
 
 #### __Site User__
@@ -346,6 +346,8 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 
 <br>
 
+---
+
 #### __Site Admin__
 
 #### Create:
@@ -371,6 +373,8 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 - Can delete public channels if inappropriate or outdated.
 
 <br>
+
+---
 
 ### __Future Features__
 
@@ -426,11 +430,63 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 
 ### Automated Testing
 
-The automated testing was completed using Django’s unit tests Python standard library module Unittest for the Django files: "models.py", "urls.py", and "views.py" in my chat app and tasks app.
+The automated testing was completed using Django’s unit tests Python standard library module Unittest for the Django files: "models.py", "urls.py", and "views.py" in my chat app and tasks app. This tested the core functionalities of the application with the remaining tests handled in the manual test cases.
 
 ![automated-tests](docs/testing/automated-tests.png)
 
+---
+
 ### Manual Test Cases
+
+####  General Users
+
+**1. Users are able to sign up and create an account**  
+- Navigate to the "Sign Up" link in the navigation bar.  
+- Fill out the registration form with a username, email, and password.  
+- Submit the form.  
+- ✅ **Expected result**: User is redirected to the home/dashboard page and receives a success message.
+
+**2. Users are able to log in to their accounts**  
+- Navigate to the "Log In" link in the navigation bar.  
+- Enter valid login credentials (username and password).  
+- Submit the form.  
+- ✅ **Expected result**: User is logged in and redirected to their task dashboard with a welcome message.
+
+**3. Users are able to log out of their accounts**  
+- While logged in, click the "Logout" link in the navigation bar.  
+- ✅ **Expected result**: User is logged out and redirected to the login page or home page with a logout confirmation.
+
+**4. Users are able to update their profile info**  
+- Navigate to the "Edit Profile" or "Profile Settings" from the navbar or profile dropdown.  
+- Update fields such as name, email, bio, or profile picture.  
+- Submit the form.  
+- ✅ **Expected result**: Changes are saved and reflected on the profile page. A success message is shown.
+
+---
+
+####  Admin Users
+
+**1. Admin is able to view tasks for any user**  
+- Log in as a superuser.  
+- Go to the admin tasks page or use the external task viewer.  
+- Enter a valid username to view their tasks.  
+- ✅ **Expected result**: A list of the selected user's tasks is displayed with correct filter options (all, week, month, etc.).
+
+**2. Admin is able to create a task for any user**  
+- On the admin/external tasks page, enter a valid username and task content.  
+- Submit the form.  
+- ✅ **Expected result**: The task appears in the user's task list and shows correct creation date and status.
+
+**3. Admin is able to edit any user's task**  
+- Click on a task to expand the form.  
+- Modify task content or completion status.  
+- Submit the update.  
+- ✅ **Expected result**: The task is updated and the changes are visible immediately.
+
+**4. Admin is able to delete any user's task**  
+- From the admin task list, click the delete icon/button next to a task.  
+- Confirm deletion if applicable.  
+- ✅ **Expected result**: Task is removed from the list and a success message may be shown.
 
 ### Code Validation
 
