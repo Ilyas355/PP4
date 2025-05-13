@@ -7,20 +7,17 @@ from .models import Room, Message
 from asgiref.sync import sync_to_async
 
 from channels.testing import WebsocketCommunicator
-from channels.layers import get_channel_layer
-from productivity_app.asgi import application  # Adjust if your project name is different
-import json
-import asyncio
-from django.test import TransactionTestCase  # Use this instead of TestCase
-from asgiref.sync import async_to_sync
 from channels.routing import URLRouter
 from chat.routing import websocket_urlpatterns
 
 test_application = URLRouter(websocket_urlpatterns)
 
+
 class ChatViewsTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.user = User.objects.create_user(
+            username='testuser', password='testpass'
+        )
         self.room = Room.objects.create(name='Test Room', slug='test-room')
 
     def test_chat_home_get(self):
@@ -31,7 +28,9 @@ class ChatViewsTests(TestCase):
 
     def test_chat_home_post(self):
         self.client.login(username='testuser', password='testpass')
-        response = self.client.post(reverse('chat-home'), {'room_name': self.room.slug})
+        response = self.client.post(
+            reverse('chat-home'), {'room_name': self.room.slug}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'chat/chatroom.html')
         self.assertContains(response, self.room.slug)
@@ -52,6 +51,7 @@ class ChatViewsTests(TestCase):
         response = self.client.get(reverse('delete_object', args=[message.id]))
         self.assertRedirects(response, '/')
         self.assertFalse(Message.objects.filter(id=message.id).exists())
+
 
 class ChatConsumerTests(TestCase):
     async def test_websocket_connect_authenticated(self):

@@ -10,14 +10,13 @@ from .models import Task
 # Create your views here.
 
 def filter_option_function(filter, tasks):
-    print(filter)
     if filter == "completed":
         return tasks.filter(complete=True)
     elif filter == "incomplete":
         return tasks.filter(complete=False)
     elif filter == "week":
         return tasks.filter(date_added__gte=now() - timedelta(days=7))
-    elif filter== "month":
+    elif filter == "month":
         return tasks.filter(date_added__gte=now() - timedelta(days=30))
     else:
         return tasks
@@ -27,27 +26,25 @@ def tasks_home(request):
     filter_option = request.GET.get("filter", "all")
     tasks = Task.objects.filter(name=request.user)
     tasks = filter_option_function(filter_option, tasks)
-    print(request.user.username)
 
-
-    return render(request, 'tasks/tasks.html', {'tasks': tasks, 'username': request.user.username, 'date_added': [task.date_added for task in tasks], 'selected_filter': filter_option})
-
+    return render(
+        request, 'tasks/tasks.html',
+        {
+            'tasks': tasks,
+            'username': request.user.username,
+            'date_added': [task.date_added for task in tasks],
+            'selected_filter': filter_option
+        })
 
 @login_required()
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
-
     task.delete()
-    
     return redirect("Tasks-home")
-
 
 @login_required()
 def edit_task(request, task_id):
-    
-    username =request.POST.get("username")
-    print(f"here is the username{username}")
-        
+    username = request.POST.get("username")
     user = get_object_or_404(User, username=username)
     task = get_object_or_404(Task, id=task_id, name=user)
     task.taskContent = request.POST.get("taskContent", task.taskContent)
@@ -55,27 +52,33 @@ def edit_task(request, task_id):
     task.save()
     return redirect("Tasks-home")
 
-
 @login_required
 def add_task(request):
-
-    username =request.POST.get("username")
-        
+    username = request.POST.get("username")
     user = get_object_or_404(User, username=username)
 
     if request.method == "POST":
         task_content = request.POST.get("taskContent")
         complete_status = request.POST.get("complete") == "on"
-        Task.objects.create(name=user, taskContent=task_content, complete=complete_status)
+        Task.objects.create(
+            name=user, taskContent=task_content, complete=complete_status
+        )
         tasks = Task.objects.filter(name__username=username)
-        return render(request, 'tasks/tasks.html', {'tasks': tasks, 'username': user, 'date_added': [task.date_added for task in tasks]})
-
+        return render(
+            request, 'tasks/tasks.html',
+            {
+                'tasks': tasks,
+                'username': user,
+                'date_added': [task.date_added for task in tasks]
+            })
 
 @login_required()
 def external_tasks_home(request):
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have permission to view this page.')
-        return redirect('chat-home') 
+        messages.error(
+            request, 'You do not have permission to view this page.'
+        )
+        return redirect('chat-home')
 
     if request.method == 'POST':
         username = request.POST.get("username")
@@ -99,7 +102,7 @@ def external_tasks_home(request):
             'date_added': [task.date_added for task in tasks],
         }
         return render(request, 'tasks/external_tasks.html', context)
-    
+
     elif request.method == 'GET':
         filter_option = request.GET.get("filter", "all")
         username = request.GET.get("username")

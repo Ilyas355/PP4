@@ -32,7 +32,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.room_group_name,
                 self.channel_name
             )
-            print(f"[WebSocket] Connecting to room: {self.scope['url_route']['kwargs']['room_name']}")
+            print(
+                f"[WebSocket] Connecting to room:"
+                f"{self.scope['url_route']['kwargs']['room_name']}"
+            )
             await self.accept()
 
         else:
@@ -101,8 +104,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def save_message(self, message, username, profile_pic, room):
         try:
             Message.objects.create(
-                message_content=message, username=username, profile_pic=profile_pic, room=room)
+                message_content=message,
+                username=username,
+                profile_pic=profile_pic, room=room)
         except Exception as e:
             print(f"Error saving message: {e}")
-            print(f"Message: {message} Message length: {len(message)}, profile_pic: {profile_pic}")
+            print(
+                f"Message: {message} Message length: "
+                f"{len(message)}, profile_pic: {profile_pic}"
+            )
             print(f"Username: {username}, , Room: {room}")

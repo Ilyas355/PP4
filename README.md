@@ -432,6 +432,8 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 
 The automated testing was completed using Django’s unit tests Python standard library module Unittest for the Django files: "models.py", "urls.py", and "views.py" in my chat app and tasks app.
 
+![automated-tests](docs/testing/automated-tests.png)
+
 ### Manual Test Cases
 
 ### Code Validation

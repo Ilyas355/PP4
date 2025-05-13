@@ -16,7 +16,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} profile"
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
@@ -36,7 +36,10 @@ class Profile(models.Model):
                 buffer = BytesIO()
                 img.save(buffer, format=img.format)
                 buffer.seek(0)
-                self.image.save(self.image.name, ContentFile(buffer.read()), save=False)
+                self.image.save(
+                    self.image.name,
+                    ContentFile(buffer.read()), save=False
+                )
                 super().save(*args, **kwargs)
 
         except Exception as e:

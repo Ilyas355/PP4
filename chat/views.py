@@ -9,6 +9,7 @@ from .models import Message, Room
 from django.contrib import messages
 # Create your views here.
 
+
 @login_required()
 def chat_home(request):
     form = RoomForm(request.POST or None)
@@ -17,9 +18,18 @@ def chat_home(request):
         db_messages = Message.objects.filter(room=room_name)[:]
         username = request.user.username
         messages.success(request, f"Joined: {room_name}")
-        return render(request, 'chat/chatroom.html', {'room_name': room_name, 'db_messages': db_messages, 'username': username})
+        return render(
+            request,
+            'chat/chatroom.html',
+            {
+                'room_name': room_name,
+                'db_messages': db_messages,
+                'username': username
+            }
+        )
 
     return render(request, 'chat/index.html', {'form': form})
+
 
 @login_required
 def chat_room(request, room_name):
@@ -32,6 +42,7 @@ def chat_room(request, room_name):
         'db_messages': db_messages,
         'username': username,
     })
+
 
 @login_required
 def delete_object_function(request, id):
