@@ -549,8 +549,55 @@ Website was also opened on the following devices and no responsive issues were s
 
 ## Deployment
 
-### Deployment Process
+### Version Control
+
+The site was created using the Visual Studio Code editor and pushed to github to the remote repository ‘PP4’.
+
+The following git commands were used throughout development to push code to the remote repo:
+
+```git add <file>``` - This command was used to add the file(s) to the staging area before they are committed.
+
+```git commit -m “commit message”``` - This command was used to commit changes to the local repository queue ready for the final step.
+
+```git push``` - This command was used to push all committed code to the remote repository on github.
+
+### Heroku Deployment
+
+The site was deployed to Heroku. The steps to deploy are as follows:
+
+- Navigate to heroku and create an account
+- Click the new button in the top right corner
+- Select create new app
+- Enter app name
+- Select region and click create app
+- Click the resources tab and search for Heroku Postgres
+- Select hobby dev and continue
+- Go to the settings tab and then click reveal config vars
+- Add the following config vars:
+  - SECRET_KEY: (Your secret key)
+  - DATABASE_URL: (This should already exist with add on of postgres)
+  - EMAIL_HOST_USER: (email address)
+  - EMAIL_HOST_PASS: (email app password)
+  - CLOUNDINARY_URL: (cloudinary api url)
+- Click the deploy tab
+- Scroll down to Connect to GitHub and sign in / authorize when prompted
+- In the search box, find the repositoy you want to deploy and click connect
+- Scroll down to Manual deploy and choose the main branch
+- Click deploy
+
+The app should now be deployed.
+
+The live link can be found here: [productivity app](https://productivity-app-pp4-6c2bd8f4331e.herokuapp.com)
 
 ## Credits
 
+- My favicon image was created using this websiste [promeai.pro](https://www.promeai.pro/).
+- At different parts of the project text was generated using chatgpt.
+- I used websites like stack overflow frequently when debugging throughout the project.
+- Some of the basic structure of my chat app was inspired by existing django chat apps like [Django Chat App](https://github.com/rustyxlol/Django-ChatApp) and tutorials as mentioned in the resources section.
+
 ### Resources Used
+
+- [Django Channels - RealPython](https://realpython.com/getting-started-with-django-channels/)
+- [Django Channels](https://channels.readthedocs.io/)
+- [Django Channels and WebSockets oversimplified - Dennis Ivy](https://www.youtube.com/watch?v=cw8-KFVXpTE)
