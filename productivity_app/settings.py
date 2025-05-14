@@ -32,7 +32,7 @@ if os.path.isfile('env.py'):
 SECRET_KEY = 'django-insecure-h!-!dx5to$mg*wp3rx7sbc6d$+t6t6p%5oahu6gq$sg2(1-9i)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['productivity-app-pp4-6c2bd8f4331e.herokuapp.com', '127.0.0.1']
 
