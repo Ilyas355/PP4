@@ -592,7 +592,7 @@ The live link can be found here: [productivity app](https://productivity-app-pp4
 - My favicon image was created using this websiste [promeai.pro](https://www.promeai.pro/).
 - At different parts of the project text was generated using chatgpt.
 - I used websites like stack overflow frequently when debugging throughout the project.
-- Some of the basic structure of my chat app was inspired by existing django chat apps like [Django Chat App](https://github.com/rustyxlol/Django-ChatApp) and tutorials as mentioned in the resources section.
+- Some of the basic structure of my chat app (and login/sign in and profile system) was inspired and modelled by existing django chat apps like [Django Chat App](https://github.com/rustyxlol/Django-ChatApp) and tutorials as mentioned in the resources section.
 
 ### Resources Used
 
