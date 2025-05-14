@@ -426,6 +426,8 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
 
      - [Cloudinary](https://console.cloudinary.com/) - Where used to save static media files.
 
+---
+
 ## Testing
 
 ### Automated Testing
@@ -434,9 +436,8 @@ The automated testing was completed using Django’s unit tests Python standard 
 
 ![automated-tests](docs/testing/automated-tests.png)
 
----
 
-### Manual Test Cases
+## Manual Test Cases
 
 ####  General Users
 
@@ -488,15 +489,63 @@ The automated testing was completed using Django’s unit tests Python standard 
 - Confirm deletion if applicable.  
 - ✅ **Expected result**: Task is removed from the list and a success message may be shown.
 
-### Code Validation
+---
 
-### Lighthouse Performance Testing
+## Code Validation
+### HTML
+- All html code in my code were put through html code validator and all errors where fixed.
 
-### Debugging
+![html](docs/testing/html-validation.png)
 
-### Unfixed Bugs
+### CSS
+- All css code in my code were put through css code validator and all errors where fixed.
 
-### Testing on Different Browsers and Screen Sizes
+![css](docs/testing/css-validation.png)
+
+### JS
+- All my javascript scripts were put through the JS Hint and no errors were returned.
+
+![JS Validation](docs/testing/JS-Hint-validation.png)
+
+
+### Python
+- All my Python files were put through the CI Python Linter and no errors were returned.
+
+![Python Validation](docs/testing/CI-Python-Linter-Validation.png)
+
+## Lighthouse Performance Testing
+
+   - All pages achieved a great score for accessibility performance.
+
+![lighthouse testing](docs/testing/productivity-app-accessibility.png)
+
+## Unfixed Bugs
+
+Due to time contstraints I wasn't able to address and fix the following bugs in my project:
+- When messages are deleted in the chatrooms or are edited users are foreced to be redirected to the home page due to a deficient implementation of my delete messages function.
+- When a site admin deletes the tasks of other users they are redirected to their tasks page do to a limited implementation of my delete tasks function.
+
+## Testing on Different Browsers and Screen Sizes
+
+All pages were tested to ensure responsiveness on screen sizes from 320px and upwards as defined in WCAG 2.1 Reflow criteria for responsive design on Chrome, Edge, Firefox and Opera browsers.
+
+Steps to test:
+
+- Open browser and navigate to [productivity app](https://productivity-app-pp4-6c2bd8f4331e.herokuapp.com)
+- Open the developer tools (right click and inspect)
+- Set to responsive and decrease width to 320px
+- Set the zoom to 50%
+-  Click and drag the responsive window to maximum width
+
+Expected:
+
+Website is responsive on all screen sizes and no images are pixelated or stretched. No horizontal scroll is present. No elements overlap.
+
+Actual:
+
+Website behaved as expected.
+
+Website was also opened on the following devices and no responsive issues were seen
 
 ## Deployment
 
@@ -505,7 +554,3 @@ The automated testing was completed using Django’s unit tests Python standard 
 ## Credits
 
 ### Resources Used
-
-### Content Contributors
-
-### Honourable Mentions

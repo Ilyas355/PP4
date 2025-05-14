@@ -1,77 +1,79 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="keywords" content="task manager, productivity, to-do list, project planning, time management">
+      <meta name="description" content="Boost your productivity with our task management and collaboration app. Sign up, track tasks, and stay organized.">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 
-    <link rel="icon" type="image/png" href="{% static 'favicon-image.png' %}">
-    <title>Productivity App</title>
+      <link rel="icon" type="image/png" href="{% static 'favicon-image.png' %}">
+      <title>Productivity App</title>
 
 
-</head>
-<body>
-  <header class="site-header">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-lg fixed-top">
-      <div class="container">
-        <a class="navbar-brand font-weight-bold" href="{% url 'chat-home' %}">Productivity App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarToggle">
-          <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link text-light" href="{% url 'chat-home' %}">Chat</a>
-            <a class="nav-item nav-link text-light" href="{% url 'Tasks-home' %}">Tasks</a>
-            {% if request.user.is_superuser %}
-            <a class="nav-item nav-link text-light" href="{% url 'External-tasks-home' %}">External Tasks</a>
-            {% endif %}
-          </div>
-          <!-- Navbar Right Side -->
-          <div class="navbar-nav">
-            {% if user.is_authenticated %}
-            <img width="40px" class="rounded-circle border border-light shadow-sm mr-2" style="height: 40px; width: 40px;" src="{{ user.profile.image.url }}">
-            <a class="nav-item nav-link text-light" href="{% url 'profile' %}">Profile</a>
-            <a class="nav-item nav-link text-danger font-weight-bold" href="{% url 'logout' %}">Logout</a>
-            {% else %}
-            <a class="nav-item nav-link text-light" href="{% url 'login' %}">Login</a>
-            <a class="nav-item nav-link text-info font-weight-bold" href="{% url 'logout' %}">Register</a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main role="main" class="container mt-5 pt-4">
-    <div class="row">
-      <div class="col-md-8">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm border-0" role="alert">
-          <strong>🗨 {{ message }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-lg fixed-top">
+        <div class="container">
+          <a class="navbar-brand font-weight-bold" href="{% url 'chat-home' %}">Productivity App</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link text-light" href="{% url 'chat-home' %}">Chat</a>
+              <a class="nav-item nav-link text-light" href="{% url 'Tasks-home' %}">Tasks</a>
+              {% if request.user.is_superuser %}
+              <a class="nav-item nav-link text-light" href="{% url 'External-tasks-home' %}">External Tasks</a>
+              {% endif %}
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+              <img width="40" alt="User profile picture" class="rounded-circle border border-light shadow-sm mr-2" style="height: 40px; width: 40px;" src="{{ user.profile.image.url }}">
+              <a class="nav-item nav-link text-light" href="{% url 'profile' %}">Profile</a>
+              <a class="nav-item nav-link text-danger font-weight-bold" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+              <a class="nav-item nav-link text-light" href="{% url 'login' %}">Login</a>
+              <a class="nav-item nav-link text-info font-weight-bold" href="{% url 'logout' %}">Register</a>
+              {% endif %}
+            </div>
+          </div>
         </div>
-        {% endfor %}
-        {% endif %}
-        {% block content %}{% endblock %}
-      </div>
-      {% block server %}{% endblock server %}
-    </div>
-  </main>
+      </nav>
+    </header>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+    <main role="main" class="container mt-5 pt-4">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm border-0" role="alert">
+            <strong>🗨 {{ message }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+        {% block server %}{% endblock server %}
+      </div>
+    </main>
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
 </html>

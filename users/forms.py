@@ -10,6 +10,11 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'password1', 'password2']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].help_text = "Password must be at least 8 characters long."
+        self.fields['password2'].help_text = "Enter the same password for verification."
+
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()

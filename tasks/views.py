@@ -9,6 +9,7 @@ from .models import Task
 
 # Create your views here.
 
+
 def filter_option_function(filter, tasks):
     if filter == "completed":
         return tasks.filter(complete=True)
@@ -20,6 +21,7 @@ def filter_option_function(filter, tasks):
         return tasks.filter(date_added__gte=now() - timedelta(days=30))
     else:
         return tasks
+
 
 @login_required()
 def tasks_home(request):
@@ -36,11 +38,13 @@ def tasks_home(request):
             'selected_filter': filter_option
         })
 
+
 @login_required()
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     task.delete()
     return redirect("Tasks-home")
+
 
 @login_required()
 def edit_task(request, task_id):
@@ -51,6 +55,7 @@ def edit_task(request, task_id):
     task.complete = "complete" in request.POST
     task.save()
     return redirect("Tasks-home")
+
 
 @login_required
 def add_task(request):
@@ -71,6 +76,7 @@ def add_task(request):
                 'username': user,
                 'date_added': [task.date_added for task in tasks]
             })
+
 
 @login_required()
 def external_tasks_home(request):

@@ -12,7 +12,7 @@
       {% if db_messages %} 
       {% for m in db_messages %}
       <div id ="{{ m.id }}" class="media content-section">
-        <img class="rounded-circle article-img" src="{{ m.profile_pic }}" />
+        <img alt="rounded circle image" class="rounded-circle article-img" src="{{ m.profile_pic }}" />
         <div class="media-body">
           <div class="article-metadata">
             <span class="mr-2"> {{ m.username }} </span>
