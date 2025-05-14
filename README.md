@@ -401,30 +401,28 @@ An MVP (Minimum Viable Product) approach was taken to the development of this si
      - Django
      - Unitest (Django’s unit tests)
 
-### Libraries and Programs Used
 
+- ### Libraries and Programs Used
 
-   - ## Libraries and Programs Used
+    - Git - Was used for version control, the Gitpod terminal to commit and push to GitHub.
 
-     - Git - Was used for version control, the Gitpod terminal to commit and push to GitHub.
+    - [GitHub](https://github.com/) - Was used to store the project code and display the project in GitHub Pages.
 
-     - [GitHub](https://github.com/) - Was used to store the project code and display the project in GitHub Pages.
+    - [Balsamiq](https://www.Balsamiq.com/) - Was used to create the wireframes.
 
-     - [Balsamiq](https://www.Balsamiq.com/) - Was used to create the wireframes.
+    - [Lucid](https://lucid.app/) - Was used to create the flowcharts.
 
-     - [Lucid](https://lucid.app/) - Was used to create the flowcharts.
+    - Google Dev Tools- Were used to test and troubleshoot the webpage as well as fix problems with responsive design and styling.
 
-     - Google Dev Tools- Were used to test and troubleshoot the webpage as well as fix problems with responsive design and styling.
+    - [Favicon](https://favicon.io/) - Was used to take the logo and make it into a favicon.
 
-     - [Favicon](https://favicon.io/) - Was used to take the logo and make it into a favicon.
+    - [Heroku](heroku.com) - Where used for Deployment.
 
-     - [Heroku](heroku.com) - Where used for Deployment.
+    - [Bootstrap](https://getbootstrap.com/) - Where used for CSS and some HTML.
 
-     - [Bootstrap](https://getbootstrap.com/) - Where used for CSS and some HTML.
+    - [PostgreSQL](https://www.postgresql.org/) - Was used for PostgreSQL database hosting.
 
-     - [PostgreSQL](https://www.postgresql.org/) - Was used for PostgreSQL database hosting.
-
-     - [Cloudinary](https://console.cloudinary.com/) - Where used to save static media files.
+    - [Cloudinary](https://console.cloudinary.com/) - Where used to save static media files.
 
 ---
 
@@ -522,7 +520,7 @@ The automated testing was completed using Django’s unit tests Python standard 
 ## Unfixed Bugs
 
 Due to time contstraints I wasn't able to address and fix the following bugs in my project:
-- When messages are deleted in the chatrooms or are edited users are foreced to be redirected to the home page due to a deficient implementation of my delete messages function.
+- When messages are deleted in the chatrooms or are edited users are forced to be redirected to the home page due to a deficient implementation of my delete messages function.
 - When a site admin deletes the tasks of other users they are redirected to their tasks page do to a limited implementation of my delete tasks function.
 
 ## Testing on Different Browsers and Screen Sizes
