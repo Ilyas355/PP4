@@ -29,12 +29,17 @@ if os.path.isfile('env.py'):
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h!-!dx5to$mg*wp3rx7sbc6d$+t6t6p%5oahu6gq$sg2(1-9i)'
+SECRET_KEY = (
+    'django-insecure-h!-!dx5to$mg*wp3rx7sbc6d$+t6t6p%5oahu6gq$sg2(1-9i)'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['productivity-app-pp4-6c2bd8f4331e.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'productivity-app-pp4-6c2bd8f4331e.herokuapp.com',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -94,7 +99,10 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get('REDISCLOUD_URL', 'redis://127.0.0.1:6379')],
+            "hosts": [os.environ.get(
+                'REDISCLOUD_URL',
+                'redis://127.0.0.1:6379'
+                )],
         },
     },
 }
@@ -121,19 +129,30 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'
+        ),
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -169,5 +188,5 @@ LOGIN_REDIRECT_URL = 'chat-home'
 LOGIN_URL = 'login'
 
 CSRF_TRUSTED_ORIGINS = [
-"https://productivity-app-pp4-6c2bd8f4331e.herokuapp.com"
+    "https://productivity-app-pp4-6c2bd8f4331e.herokuapp.com"
 ]

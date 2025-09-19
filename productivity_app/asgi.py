@@ -11,7 +11,7 @@ django_asgi_app = get_asgi_application()
 # Initialize Django ASGI application early to ensure the AppRegistry
 # is populated before importing code that may import ORM models.
 
-from chat.routing import websocket_urlpatterns
+from chat.routing import websocket_urlpatterns  # noqa: E402
 
 application = ProtocolTypeRouter(
     {

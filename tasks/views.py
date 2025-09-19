@@ -69,13 +69,8 @@ def add_task(request):
             name=user, taskContent=task_content, complete=complete_status
         )
         tasks = Task.objects.filter(name__username=username)
-        return render(
-            request, 'tasks/tasks.html',
-            {
-                'tasks': tasks,
-                'username': user,
-                'date_added': [task.date_added for task in tasks]
-            })
+
+    return redirect("Tasks-home")
 
 
 @login_required()
