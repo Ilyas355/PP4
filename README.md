@@ -523,6 +523,12 @@ Due to time contstraints I wasn't able to address and fix the following bugs in 
 - When messages are deleted in the chatrooms or are edited users are forced to be redirected to the home page due to a deficient implementation of my delete messages function.
 - When a site admin deletes the tasks of other users they are redirected to their tasks page do to a limited implementation of my delete tasks function.
 
+### Silenced error
+In my asgi.py file, the import for websocket_urlpatterns comes after the get_asgi_application() call. This ordering is required by Django Channels so that Django’s app registry is fully loaded before any project code (like routing) is imported.
+
+If placed at the top, Django can raise AppRegistryNotReady errors. To keep the project functional while still passing linting, the warning is silenced with # noqa: E402.
+
+
 ## Testing on Different Browsers and Screen Sizes
 
 All pages were tested to ensure responsiveness on screen sizes from 320px and upwards as defined in WCAG 2.1 Reflow criteria for responsive design on Chrome, Edge, Firefox and Opera browsers.
